@@ -1,0 +1,13 @@
+.plus_Folder_File {
+  height: 20px;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+}
+
+.plus_Folder_File_img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+  flex-shrink: 0;
+}

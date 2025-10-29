@@ -1,0 +1,13 @@
+.Title_Font {
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 60px;
+  outline: none;
+  letter-spacing: 5px;
+}
+
+.Title_box {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #303030;
+}

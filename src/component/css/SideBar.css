@@ -1,0 +1,29 @@
+.Side_Box {
+  z-index: 99;
+  background-color: #272727;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 2px solid #2e2e2e;
+  white-space: nowrap; /* 줄바꿈 금지 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 넘치는 부분 ... 으로 표시 */
+}
+
+.Title {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #404040;
+  color: white;
+  font-size: 20px;
+  width: 90%;
+  height: 40px;
+  align-items: center;
+}
+
+.Title.collapsed {
+  justify-content: center; /* 접힌 상태에선 화살표만 중앙 */
+  padding: 0 6px;
+}

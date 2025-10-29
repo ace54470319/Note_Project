@@ -1,0 +1,59 @@
+body,
+html,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.grid_box {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: 270px 1fr;
+  grid-template-rows: 40px 1fr;
+  overflow: hidden;
+
+  grid-template-areas:
+    "sidebar header"
+    "sidebar body";
+}
+
+.sidebar {
+  position: relative;
+  grid-area: sidebar;
+}
+.header {
+  grid-area: header;
+}
+.body {
+  grid-area: body;
+}
+
+.sidebar_cell {
+  opacity: 0;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.resize_handle {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: -4px;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  background-color: rgb(97, 97, 97);
+}
+
+.main_cell {
+  min-width: 0;
+  overflow: auto;
+}
+
+.no-select {
+  user-select: none;
+}

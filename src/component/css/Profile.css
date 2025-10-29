@@ -1,0 +1,23 @@
+.Login_Box {
+  width: 90%;
+  height: 60px;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  gap: 10px;
+}
+
+.Profile_img_Box {
+  border-radius: 5px;
+  height: 60%;
+  position: relative;
+  background-color: blue;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.Profile_img_Box:hover {
+  height: 100%;
+}
