@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import SideBar from "./SideBar";
-import BodyMain from "./BodyMain";
-import Header from "./Header";
-import "../css/MainPage.css";
+import { useEffect, useRef, useState } from 'react';
+import SideBar from './Sidebar/SideBar';
+import BodyMain from './Body/BodyMain';
+import Header from './Header/Header';
+import '../css/MainPage.css';
 
 export default function App() {
   const [sidebarWidth, setSidebarWidth] = useState(270);
@@ -29,20 +29,20 @@ export default function App() {
       if (resizingRef.current) {
         resizingRef.current = false;
         setIsResizing(false);
-        document.body.classList.remove("no-select");
+        document.body.classList.remove('no-select');
       }
     };
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
     return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
     };
   }, []);
 
   const startResize = () => {
     resizingRef.current = true;
-    document.body.classList.add("no-select");
+    document.body.classList.add('no-select');
   };
 
   return (
@@ -51,7 +51,7 @@ export default function App() {
       className="grid_box"
       style={{
         gridTemplateColumns: `${sidebarWidth}px 1fr`,
-        transition: isResizing ? "none" : "grid-template-columns 1s ease",
+        transition: isResizing ? 'none' : 'grid-template-columns 1s ease',
       }}
     >
       {/* 1️⃣ 왼쪽 사이드바 */}
