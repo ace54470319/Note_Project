@@ -12,11 +12,10 @@ html,
   height: 100vh;
   grid-template-columns: 270px 1fr;
   grid-template-rows: 40px 1fr;
-  overflow: hidden;
 
   grid-template-areas:
-    "sidebar header"
-    "sidebar body";
+    'sidebar header'
+    'sidebar body';
 }
 
 .sidebar {
@@ -28,6 +27,7 @@ html,
 }
 .body {
   grid-area: body;
+  overflow-y: hidden;
 }
 
 .sidebar_cell {

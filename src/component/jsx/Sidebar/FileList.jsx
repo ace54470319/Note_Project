@@ -5,9 +5,7 @@ import folderPlus from '../../img/contents/folderPlus.png';
 import folderOpen from '../../img/contents/folder_open.png';
 import folderClose from '../../img/contents/folder_close.png';
 
-function FileList() {
-  const [rootFiles, setRootFiles] = useState([]); // 폴더 밖(루트)의 파일들
-  const [folders, setFolders] = useState([]); // 폴더 목록
+function FileList({ rootFiles, setRootFiles, folders, setFolders, selected, onSelect }) {
   const [open, setOpen] = useState({}); // 폴더 펼침/접힘 상태
 
   const addFolder = () => {
@@ -21,14 +19,16 @@ function FileList() {
   const addRootFile = () => {
     const name = prompt('새 파일 이름을 입력하세요 (루트):');
     if (!name) return;
-    setRootFiles((prev) => [...prev, { id: Date.now(), name }]);
+    setRootFiles((prev) => [...prev, { id: Date.now(), name, title: '', content: '' }]);
   };
 
   const addFileToFolder = (folderId) => {
     const name = prompt('새 파일 이름을 입력하세요 (폴더 내부):');
     if (!name) return;
     setFolders((prev) =>
-      prev.map((f) => (f.id === folderId ? { ...f, files: [...f.files, { id: Date.now(), name }] } : f))
+      prev.map((f) =>
+        f.id === folderId ? { ...f, files: [...f.files, { id: Date.now(), name, title: '', content: '' }] } : f
+      )
     );
   };
 
@@ -68,7 +68,18 @@ function FileList() {
       {rootFiles.length > 0 && (
         <div className="file-list" style={{ width: '90%' }}>
           {rootFiles.map((file) => (
-            <div key={file.id} className="file-item" style={{ marginLeft: '4px', color: '#ccc', padding: '4px 0' }}>
+            <div
+              key={file.id}
+              className={`file-item${selected?.scope === 'root' && selected?.fileId === file.id ? ' selected' : ''}`}
+              style={{
+                marginLeft: '4px',
+                color: '#ccc',
+                padding: '4px 0',
+                cursor: 'pointer',
+                background: selected?.scope === 'root' && selected?.fileId === file.id ? '#252525' : undefined,
+              }}
+              onClick={() => onSelect && onSelect({ scope: 'root', fileId: file.id })}
+            >
               · {file.name}
             </div>
           ))}
@@ -86,15 +97,14 @@ function FileList() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                marginBottom: '6px',
-                padding: '6px 8px',
+                marginBottom: '3px',
+                padding: '4px 6px',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 background: open[folder.id] ? '#2f2f2f' : 'transparent',
               }}
               onClick={() => toggleFolder(folder.id)}
             >
-              {/* ▼ / ▶ 대신 이미지로 표시 */}
               <img
                 src={open[folder.id] ? folderOpen : folderClose}
                 alt="folder-toggle"
@@ -131,7 +141,19 @@ function FileList() {
             {open[folder.id] && folder.files.length > 0 && (
               <div style={{ marginLeft: 24, marginTop: 6 }}>
                 {folder.files.map((file) => (
-                  <div key={file.id} style={{ color: '#aaa', padding: '4px 0' }}>
+                  <div
+                    key={file.id}
+                    style={{
+                      color: '#aaa',
+                      padding: '4px 0',
+                      cursor: 'pointer',
+                      background:
+                        selected?.scope === 'folder' && selected?.fileId === file.id && selected?.folderId === folder.id
+                          ? '#232323'
+                          : undefined,
+                    }}
+                    onClick={() => onSelect && onSelect({ scope: 'folder', folderId: folder.id, fileId: file.id })}
+                  >
                     · {file.name}
                   </div>
                 ))}

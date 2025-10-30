@@ -3,7 +3,7 @@ import Profile from './Profile';
 import Search from './Search';
 import FileList from './FileList';
 
-function SideBar({ onToggle, isOpen }) {
+function SideBar({ onToggle, isOpen, rootFiles, setRootFiles, folders, setFolders, selected, onSelect }) {
   return (
     <div className="Side_Box">
       <div className={`Title ${isOpen ? 'collapsed' : 'open'}`}>
@@ -38,11 +38,19 @@ function SideBar({ onToggle, isOpen }) {
           ◀
         </div>
       </div>
+
       {!isOpen && (
         <>
           <Profile />
           <Search />
-          <FileList />
+          <FileList
+            rootFiles={rootFiles}
+            setRootFiles={setRootFiles}
+            folders={folders}
+            setFolders={setFolders}
+            selected={selected}
+            onSelect={onSelect}
+          />
         </>
       )}
     </div>
