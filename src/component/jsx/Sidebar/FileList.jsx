@@ -74,9 +74,11 @@ function FileList({ rootFiles, setRootFiles, folders, setFolders, selected, onSe
               style={{
                 marginLeft: '4px',
                 color: '#ccc',
+                borderRadius: '6px',
                 padding: '4px 0',
                 cursor: 'pointer',
-                background: selected?.scope === 'root' && selected?.fileId === file.id ? '#252525' : undefined,
+                transition: 'background 0.3s ease',
+                background: selected?.scope === 'root' && selected?.fileId === file.id ? '#1c1c1c' : undefined,
               }}
               onClick={() => onSelect && onSelect({ scope: 'root', fileId: file.id })}
             >
@@ -101,6 +103,7 @@ function FileList({ rootFiles, setRootFiles, folders, setFolders, selected, onSe
                 padding: '4px 6px',
                 borderRadius: '6px',
                 cursor: 'pointer',
+                transition: 'background 0.3s ease',
                 background: open[folder.id] ? '#2f2f2f' : 'transparent',
               }}
               onClick={() => toggleFolder(folder.id)}

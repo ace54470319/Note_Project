@@ -12,7 +12,6 @@
 }
 
 div::-webkit-scrollbar {
-  display: none;
 }
 
 .ProseMirror p.is-editor-empty:first-child::before {
@@ -98,4 +97,20 @@ div::-webkit-scrollbar {
   padding-left: 15px; /* 필요시 0~1.25rem로 조정 */
   /* 또는 padding-left: 0; list-style-position: inside; 로 점을 안쪽에 */
   /* list-style-position: inside; */
+}
+
+/* 에디터 본문과 ProseMirror 스크롤바를 얇고 자연스럽게 */
+.Editor_body, .ProseMirror {
+  scrollbar-width: thin;         /* firefox용 */
+  scrollbar-color: #888 #222;
+}
+.Editor_body::-webkit-scrollbar,
+.ProseMirror::-webkit-scrollbar {
+  width: 6px;
+  background: #222;
+}
+.Editor_body::-webkit-scrollbar-thumb,
+.ProseMirror::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
 }

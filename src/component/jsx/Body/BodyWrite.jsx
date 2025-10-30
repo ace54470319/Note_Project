@@ -47,7 +47,7 @@ function BodyWrite({ value = '', onChange, readOnly }) {
         height: '90%',
         msOverflowStyle: 'none',
         color: '#eaeaea',
-        overflowY: 'scroll',
+        overflowY: 'auto', // 스크롤바 필요 시만 보임, 숨기기 위해 css 병행 적용
         marginTop: '20px',
         outline: 'none',
         border: 'none',
