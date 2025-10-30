@@ -2,6 +2,8 @@ import { useState } from 'react';
 import '../../css/FileList.css';
 import filePlus from '../../img/contents/filePlus.png';
 import folderPlus from '../../img/contents/folderPlus.png';
+import folderOpen from '../../img/contents/folder_open.png';
+import folderClose from '../../img/contents/folder_close.png';
 
 function FileList() {
   const [rootFiles, setRootFiles] = useState([]); // 폴더 밖(루트)의 파일들
@@ -60,13 +62,14 @@ function FileList() {
           </div>
         </div>
       </div>
+      <div style={{ height: '15px' }}> </div>
 
       {/* 루트 파일 목록 */}
       {rootFiles.length > 0 && (
         <div className="file-list" style={{ width: '90%' }}>
           {rootFiles.map((file) => (
             <div key={file.id} className="file-item" style={{ marginLeft: '4px', color: '#ccc', padding: '4px 0' }}>
-              📄 {file.name}
+              · {file.name}
             </div>
           ))}
         </div>
@@ -83,20 +86,33 @@ function FileList() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
+                marginBottom: '6px',
                 padding: '6px 8px',
                 borderRadius: '6px',
                 cursor: 'pointer',
-                background: open[folder.id] ? '#3e3e3e' : 'transparent',
+                background: open[folder.id] ? '#2f2f2f' : 'transparent',
               }}
               onClick={() => toggleFolder(folder.id)}
             >
-              <span style={{ width: 16 }}>{open[folder.id] ? '▼' : '▶'}</span>
-              <span>📁 {folder.name}</span>
+              {/* ▼ / ▶ 대신 이미지로 표시 */}
+              <img
+                src={open[folder.id] ? folderOpen : folderClose}
+                alt="folder-toggle"
+                style={{
+                  width: '16px',
+                  height: '16px',
+                  objectFit: 'contain',
+                  opacity: 0.8,
+                }}
+              />
+
+              <span>{folder.name}</span>
+
               <div style={{ marginLeft: 'auto', display: 'flex', gap: '6px' }}>
                 <div
                   className="plus_Folder_File"
                   onClick={(e) => {
-                    e.stopPropagation(); // 토글과 충돌 방지
+                    e.stopPropagation(); // 폴더 토글 이벤트 막기
                     addFileToFolder(folder.id);
                   }}
                   title="이 폴더에 파일 추가"
@@ -116,7 +132,7 @@ function FileList() {
               <div style={{ marginLeft: 24, marginTop: 6 }}>
                 {folder.files.map((file) => (
                   <div key={file.id} style={{ color: '#aaa', padding: '4px 0' }}>
-                    📄 {file.name}
+                    · {file.name}
                   </div>
                 ))}
               </div>
